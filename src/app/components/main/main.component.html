@@ -1,0 +1,22 @@
+<main>
+  <form (ngSubmit)="submit()" [formGroup]="searchParamter" #formDir="ngForm">
+    <div class="search-area">
+      <input
+        class="search"
+        type="search"
+        placeholder="Search for a git repository"
+        formControlName="parameter"
+      />
+      <button class="search-button">Search</button>
+    </div>
+    <!--Verificação que mostra um paragrafo ao tentar enviar busca vazia-->
+    <div
+      *ngIf="searchParamter.invalid && formDir.submitted"
+      class="validation-error"
+    >
+      <p class="error">*Type something to search</p>
+    </div>
+  </form>
+  <!--Linha de código responsável por enviar os dados de "repositorys" para o componente filho-->
+  <app-repository-card [repositorys]="repositorys"></app-repository-card>
+</main>
